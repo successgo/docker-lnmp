@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    nginx:
+        depends_on:
+            - php
+        build: ./docker/nginx
+        expose:
+            - 80
+        volumes:
+            - ./:/var/www/html
+        links:
+            - php
+        restart: always
+        environment:
+            VIRTUAL_HOST: example.com
+    php:
+        depends_on:
+            - db
+        build: ./docker/php7-fpm
+        volumes:
+            - ./:/var/www/html
+        links:
+            - db:db
+        restart: always
+    db:
+        image: mariadb:10.3
+        command:
+            - --character-set-server=utf8
+            - --collation-server=utf8_unicode_ci
+            - --init-connect='SET NAMES UTF8;'
+        volumes:
+            - database:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        restart: always
+
+volumes:
+    database:
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
+
