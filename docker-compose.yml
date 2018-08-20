@@ -8,7 +8,7 @@ services:
         expose:
             - 80
         volumes:
-            - ./:/var/www/html
+            - ./sites/:/var/www/html
             - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
         links:
             - php
@@ -20,7 +20,7 @@ services:
             - db
         build: ./docker/php7-fpm
         volumes:
-            - ./:/var/www/html
+            - ./sites/:/var/www/html
         links:
             - db:db
         restart: always
