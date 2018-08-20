@@ -9,6 +9,7 @@ services:
             - 80
         volumes:
             - ./:/var/www/html
+            - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
         links:
             - php
         restart: always

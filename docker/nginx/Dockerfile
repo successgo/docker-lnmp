@@ -6,8 +6,7 @@ RUN set -ex; \
     usermod -u 1000 nginx; \
     groupmod -g 1000 nginx
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.example.com.conf /etc/nginx/sites-enabled/example.com.conf
+COPY ./etc/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
