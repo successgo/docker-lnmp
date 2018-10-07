@@ -2,27 +2,19 @@ version: '3'
 
 services:
     nginx:
-        depends_on:
-            - php
         build: ./docker/nginx
         expose:
             - 80
         volumes:
             - ./sites/:/var/www/html
             - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
-        links:
-            - php
         restart: always
         environment:
             VIRTUAL_HOST: example.com
     php:
-        depends_on:
-            - db
         build: ./docker/php7-fpm
         volumes:
             - ./sites/:/var/www/html
-        links:
-            - db:db
         restart: always
     db:
         image: mariadb:10.3
@@ -39,5 +31,4 @@ volumes:
 networks:
     default:
         external:
-            name: nginx-proxy
-
+            name: gateway-network
