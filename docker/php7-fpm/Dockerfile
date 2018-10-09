@@ -33,7 +33,7 @@ RUN set -ex; \
         ; \
     docker-php-ext-configure opcache --enable-opcache; \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
-    docker-php-ext-configure zip --with-zip-dir=/usr/include; \
+    docker-php-ext-configure zip ; \
     docker-php-ext-configure mysqli; \
     docker-php-ext-install -j $(nproc) \
         bcmath \
