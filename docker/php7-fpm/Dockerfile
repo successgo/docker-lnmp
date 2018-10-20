@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-stretch
+FROM php:7.1-fpm-stretch
 
 COPY ./etc/xdebug.ini /usr/local/etc/php/conf.d/
 
@@ -15,6 +15,7 @@ RUN set -ex; \
     # 更新源
     apt-get update; \
     apt-get install -y \
+        apt-utils \
         # php-gd 的依赖
         libfreetype6-dev \
         libpng-dev \
@@ -24,6 +25,7 @@ RUN set -ex; \
         # php-memcached 的依赖
         libmemcached-dev \
         ; \
+    pecl update-channels; \
     docker-php-ext-configure bcmath; \
     docker-php-ext-configure gd \
         --with-gd \
@@ -43,13 +45,13 @@ RUN set -ex; \
         mysqli \
         opcache \
         ; \
-    pecl install xdebug; \
+    pecl install xdebug-2.6.1; \
     docker-php-ext-enable xdebug; \
-    pecl install mongodb; \
+    pecl install mongodb-1.5.3; \
     docker-php-ext-enable mongodb; \
-    pecl install redis; \
+    pecl install redis-4.1.1; \
     docker-php-ext-enable redis; \
-    pecl install memcached; \
+    pecl install memcached-3.0.4; \
     docker-php-ext-enable memcached; \
     # 修改 php-fpm 的运行者 www-data 的 uid 和 gid 为1000
     usermod -u 1000 www-data; \
