@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    nginx:
+        build: ./docker/nginx
+        expose:
+            - 80
+        volumes:
+            - ${APP_ROOT}:/app
+            - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
+        restart: always
+        environment:
+            VIRTUAL_HOST: example.com
+    php:
+        build: ./docker/php7-fpm
+        volumes:
+            - ${APP_ROOT}:/app
+            - ./docker/php7-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+        restart: always
+    db:
+        image: mariadb:10.3
+        volumes:
+            - database:/var/lib/mysql
+            - ./docker/mysql/conf.d/charset.cnf:/etc/mysql/conf.d/charset.cnf
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        restart: always
+
+volumes:
+    database:
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
