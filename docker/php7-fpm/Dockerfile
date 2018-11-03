@@ -1,7 +1,5 @@
 FROM php:7.1-fpm-stretch
 
-COPY ./etc/xdebug.ini /usr/local/etc/php/conf.d/
-
 RUN set -ex; \
     # 换源
     echo "deb http://mirrors.ustc.edu.cn/debian/ stretch main contrib non-free" > /etc/apt/sources.list; \
