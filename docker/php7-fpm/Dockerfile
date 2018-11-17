@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-stretch
+FROM php:7.1.23-fpm-stretch
 
 RUN set -ex; \
     # 换源
@@ -43,14 +43,14 @@ RUN set -ex; \
         mysqli \
         opcache \
         ; \
-    pecl install xdebug-2.6.1; \
-    docker-php-ext-enable xdebug; \
-    pecl install mongodb-1.5.3; \
-    docker-php-ext-enable mongodb; \
-    pecl install redis-4.1.1; \
-    docker-php-ext-enable redis; \
-    pecl install memcached-3.0.4; \
-    docker-php-ext-enable memcached; \
+    # pecl install xdebug-2.6.1; \
+    # docker-php-ext-enable xdebug; \
+    # pecl install mongodb-1.5.3; \
+    # docker-php-ext-enable mongodb; \
+    # pecl install redis-4.1.1; \
+    # docker-php-ext-enable redis; \
+    # pecl install memcached-3.0.4; \
+    # docker-php-ext-enable memcached; \
     # 修改 php-fpm 的运行者 www-data 的 uid 和 gid 为1000
     usermod -u 1000 www-data; \
     groupmod -g 1000 www-data; \

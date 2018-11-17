@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM nginx:1.15.6
 
 RUN set -ex; \
     echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf; \
