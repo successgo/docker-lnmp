@@ -18,6 +18,8 @@ RUN set -ex; \
         libfreetype6-dev \
         libpng-dev \
         libjpeg-dev \
+        libweb-dev \
+        libxpm-dev \
         # php-zip 的依赖
         libzip-dev \
         # php-memcached 的依赖
