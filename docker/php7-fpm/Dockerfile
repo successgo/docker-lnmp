@@ -18,8 +18,6 @@ RUN set -ex; \
         libfreetype6-dev \
         libpng-dev \
         libjpeg-dev \
-        libweb-dev \
-        libxpm-dev \
         # php-zip 的依赖
         libzip-dev \
         # php-memcached 的依赖
@@ -44,22 +42,18 @@ RUN set -ex; \
         mysqli \
         opcache \
         ; \
-    pecl install xdebug; \
-    docker-php-ext-enable xdebug; \
-    pecl install mongodb; \
-    docker-php-ext-enable mongodb; \
-    pecl install redis; \
-    docker-php-ext-enable redis; \
-    pecl install memcached; \
-    docker-php-ext-enable memcached; \
-    # 修改 php-fpm 的运行者 www-data 的 uid 和 gid 为1000
-    usermod -u 1000 www-data; \
-    groupmod -g 1000 www-data; \
-    chown -Rc www-data:www-data /var/www/html;
+    # pecl install xdebug; \
+    # docker-php-ext-enable xdebug; \
+    # pecl install mongodb; \
+    # docker-php-ext-enable mongodb; \
+    # pecl install redis; \
+    # docker-php-ext-enable redis; \
+    # pecl install memcached; \
+    # docker-php-ext-enable memcached; \
+    chown -Rc www-data:www-data /var/www;
 
 WORKDIR /app
 
 USER www-data
 
 CMD ["php-fpm"]
-
