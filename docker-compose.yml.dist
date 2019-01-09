@@ -17,6 +17,7 @@ services:
         build: ./docker/php7-fpm
         volumes:
             - ${APP_ROOT}:/app
+            - ./bin/composer:/usr/local/bin/composer
             - ./docker/php7-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
         restart: always
     db:

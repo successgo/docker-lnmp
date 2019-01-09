@@ -50,7 +50,7 @@ RUN set -ex; \
     # docker-php-ext-enable redis; \
     # pecl install memcached; \
     # docker-php-ext-enable memcached; \
-    chown -Rc www-data:www-data /var/www;
+    echo 'ok'
 
 WORKDIR /app
 
