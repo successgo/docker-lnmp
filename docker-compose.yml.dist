@@ -16,7 +16,7 @@ services:
     volumes:
       - ${APP_ROOT}:/app
       - ./bin/composer:/usr/local/bin/composer
-      - ./docker/php7-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php71-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     restart: always
   db:
     image: mariadb:10.3
