@@ -1,4 +1,4 @@
-FROM php:7.1.23-fpm-stretch
+FROM php:7.2-fpm-stretch
 
 RUN set -ex; \
     # change /etc/apt/sources.list according to your need

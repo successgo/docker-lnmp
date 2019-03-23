@@ -1,31 +1,31 @@
 version: '3'
 
 services:
-    nginx:
-        build: ./docker/nginx
-        ports:
-          - 80:80
-        volumes:
-            - ${APP_ROOT}:/app
-            - ./docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf
-            - ./docker/nginx/etc/conf.d/upstream.conf:/etc/nginx/conf.d/upstream.conf
-            - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
-        restart: always
-    php:
-        build: ./docker/php7-fpm
-        volumes:
-            - ${APP_ROOT}:/app
-            - ./bin/composer:/usr/local/bin/composer
-            - ./docker/php7-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
-        restart: always
-    db:
-        image: mariadb:10.3
-        volumes:
-            - database:/var/lib/mysql
-            - ./docker/mysql/conf.d/charset.cnf:/etc/mysql/conf.d/charset.cnf
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-        restart: always
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - 80:80
+    volumes:
+      - ${APP_ROOT}:/app
+      - ./docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/etc/conf.d/upstream.conf:/etc/nginx/conf.d/upstream.conf
+      - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
+    restart: always
+  php:
+    build: ./docker/php71-fpm
+    volumes:
+      - ${APP_ROOT}:/app
+      - ./bin/composer:/usr/local/bin/composer
+      - ./docker/php7-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    restart: always
+  db:
+    image: mariadb:10.3
+    volumes:
+      - database:/var/lib/mysql
+      - ./docker/mysql/conf.d/charset.cnf:/etc/mysql/conf.d/charset.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
 
 volumes:
-    database:
+  database:
