@@ -3,16 +3,14 @@ version: '3'
 services:
     nginx:
         build: ./docker/nginx
-        expose:
-            - 80
+        ports:
+          - 80:80
         volumes:
             - ${APP_ROOT}:/app
             - ./docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf
             - ./docker/nginx/etc/conf.d/upstream.conf:/etc/nginx/conf.d/upstream.conf
             - ./docker/nginx/etc/sites-enabled/:/etc/nginx/sites-enabled/
         restart: always
-        environment:
-            VIRTUAL_HOST: example.com
     php:
         build: ./docker/php7-fpm
         volumes:
@@ -31,8 +29,3 @@ services:
 
 volumes:
     database:
-
-networks:
-    default:
-        external:
-            name: nginx-proxy
