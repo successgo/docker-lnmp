@@ -1,7 +1,5 @@
 # docker-lnmp
 
-LNMP.
-
 LNMP 代表了 Linux, Nginx, MySQL 和 PHP。
 
 其中 MySQL 可以被 MariaDB 取代。
@@ -25,13 +23,6 @@ $ cp .env.dist .env
 
 # 打开 .env，修改为你的真实的项目所在的路径
 $ vim .env
-```
-
-docker 各容器之间的网络互通，可通过 docker 的网络实现。
-
-```bash
-# 创建一个名为 nginx-proxy 的网络
-$ docker network create nginx-proxy
 ```
 
 docker 启动容器需要先构建镜像，而基础镜像的下载是可以通过配置镜像源来加速下载。镜像加速文档可参考：http://docker-cn.com/registry-mirror
