@@ -26,6 +26,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8008:80
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
 
 volumes:
   database:
