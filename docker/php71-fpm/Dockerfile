@@ -22,6 +22,8 @@ RUN set -ex; \
         libjpeg-dev \
         # php zip extention need libzip
         libzip-dev \
+        # php mcrypt extension
+        libmcrypt-dev \
         # php mongodb extension need libcurl, libssl, libsasl2
         libcurl4-openssl-dev \
         libssl-dev \
@@ -42,6 +44,8 @@ RUN set -ex; \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
     # run ./configure script to configure php zip extension
     docker-php-ext-configure zip; \
+    # run ./configure script to configure php mcrypt extension
+    docker-php-ext-configure mcrypt; \
     # run ./configure script to configure php mysqli extension
     docker-php-ext-configure mysqli; \
     # install php extension: bcmath, gd, pdo_mysql, zip, mysqli, opcache
@@ -50,6 +54,7 @@ RUN set -ex; \
         gd \
         pdo_mysql \
         zip \
+        mcrypt \
         mysqli \
         opcache \
         ; \
@@ -92,6 +97,8 @@ RUN set -ex; \
     # do other stuff
     chown -Rc www-data:www-data /var/www; \
     chmod 664 -Rc /var/www; \
+    # we only modify www-data user id and group id both to 1000 in Linux, and for sh compatiblity
+    [ `uname -s` = 'Linux' ] && usermod -u 1000 www-data && groupmod -g 1000 www-data; \
     echo 'build OK!'
 
 WORKDIR /app
