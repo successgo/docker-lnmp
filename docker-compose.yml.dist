@@ -16,10 +16,13 @@ services:
     volumes:
       - ${APP_ROOT}:/app
       - ./bin/composer:/usr/local/bin/composer
-      - ./docker/php71-fpm/etc/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php71-fpm/etc/php.ini-development:/usr/local/etc/php/php.ini
+      - ./docker/php71-fpm/etc/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     restart: always
   db:
     image: mariadb:10.3
+    ports:
+      - 13306:3306
     volumes:
       - database:/var/lib/mysql
       - ./docker/mysql/conf.d/charset.cnf:/etc/mysql/conf.d/charset.cnf
