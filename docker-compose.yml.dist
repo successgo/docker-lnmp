@@ -39,6 +39,7 @@ services:
       MYSQL_PASSWORD: root
       PMA_USER: root
       PMA_PASSWORD: root
+    restart: always
 
 volumes:
   database:
