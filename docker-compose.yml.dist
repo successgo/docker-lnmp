@@ -19,7 +19,7 @@ services:
       - ./docker/php71-fpm/etc/php.ini-development:/usr/local/etc/php/php.ini
       - ./docker/php71-fpm/etc/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     restart: always
-  db:
+  mysql:
     image: mariadb:10.3
     ports:
       - 13306:3306
@@ -40,6 +40,14 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
     restart: always
+  mongo:
+    image: mongo:3.6
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - 27017:27017
+    restart: always
 
 volumes:
   database:
+  mongodb:
