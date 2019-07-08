@@ -48,6 +48,9 @@ services:
     ports:
       - 27017:27017
     restart: always
+  redis:
+    image: redis:4
+    restart: always
 
 volumes:
   database:
