@@ -57,4 +57,4 @@ services:
 volumes:
   database:
   mongodb:
-  redis
+  redis:
