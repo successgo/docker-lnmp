@@ -29,18 +29,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - 8008:80
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: root
-    restart: always
   mongo:
     image: mongo:3.6
     volumes:
@@ -52,6 +40,18 @@ services:
     image: redis:4
     volumes:
       - redis:/data
+    restart: always
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8008:80
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
     restart: always
 
 volumes:
