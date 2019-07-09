@@ -42,7 +42,7 @@ services:
       - redis:/data
     restart: always
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:4.8
     ports:
       - 8008:80
     environment:
