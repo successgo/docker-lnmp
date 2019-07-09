@@ -50,8 +50,11 @@ services:
     restart: always
   redis:
     image: redis:4
+    volumes:
+      - redis:/data
     restart: always
 
 volumes:
   database:
   mongodb:
+  redis
