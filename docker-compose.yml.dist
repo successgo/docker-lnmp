@@ -22,9 +22,9 @@ services:
   mysql:
     image: mariadb:10.3
     ports:
-      - 13306:3306
+      - 3306:3306
     volumes:
-      - database:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
       - ./docker/mysql/conf.d/charset.cnf:/etc/mysql/conf.d/charset.cnf
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -32,7 +32,7 @@ services:
   mongo:
     image: mongo:3.6
     volumes:
-      - mongodb:/data/db
+      - mongodb_data:/data/db
     ports:
       - 27017:27017
     restart: always
@@ -40,11 +40,13 @@ services:
     image: redis:4
     volumes:
       - redis:/data
+    ports:
+      - 6379:6379
     restart: always
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.8
     ports:
-      - 8008:80
+      - 8080:80
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: root
@@ -55,6 +57,6 @@ services:
     restart: always
 
 volumes:
-  database:
-  mongodb:
-  redis:
+  mysql_data:
+  mongodb_data:
+  redis_data:
