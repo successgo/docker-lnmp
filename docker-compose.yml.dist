@@ -39,7 +39,7 @@ services:
   redis:
     image: redis:4
     volumes:
-      - redis:/data
+      - redis_data:/data
     ports:
       - 6379:6379
     restart: always
