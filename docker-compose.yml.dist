@@ -20,7 +20,7 @@ services:
       - ./docker/php71-fpm/etc/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     restart: always
   mysql:
-    image: mariadb:10.3
+    image: mysql:5.7
     ports:
       - 3306:3306
     volumes:
@@ -44,7 +44,7 @@ services:
       - 6379:6379
     restart: always
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.8
+    image: phpmyadmin/phpmyadmin:4.9
     ports:
       - 8080:80
     environment:
