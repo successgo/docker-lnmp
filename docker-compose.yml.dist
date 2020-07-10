@@ -55,6 +55,16 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
     restart: always
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_PASSWORD: admin
+    restart: always
+  adminer:
+    image: adminer:4.7
+    ports:
+      - 10082:8080
+    restart: always
 
 volumes:
   mysql_data:
